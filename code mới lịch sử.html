@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASEAN 1976-1999 – Trắc nghiệm Lịch sử</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Playfair+Display:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --giay: #f1e4c3; --giay-dam: #e6d3a6; --chu: #3b2415; --chu-nhat: #6b4a30;
+    --dong: #a8741f; --do: #7a1f1f; --go: #5a3a22;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    min-height: 100vh; padding: 24px 16px 48px;
+    font-family: "Merriweather", "Times New Roman", Georgia, serif;
+    font-size: 17px; line-height: 1.75; color: var(--chu);
+    background: radial-gradient(ellipse at 20% 10%, rgba(168,116,31,.18), transparent 55%), radial-gradient(ellipse at 85% 90%, rgba(122,31,31,.14), transparent 50%), var(--giay);
+  }
+  h1, h2, h3 { font-family: "Playfair Display", "Times New Roman", Georgia, serif; margin: 0; line-height: 1.25; }
+  .khung {
+    max-width: 680px; margin: 0 auto; padding: 36px 32px;
+    background: linear-gradient(180deg, #f7edd2, var(--giay));
+    border: 3px double var(--dong); outline: 6px solid var(--go); outline-offset: 6px; box-shadow: 0 10px 30px rgba(59,36,21,.35);
+  }
+  .man { display: none; } .man.hien { display: block; }
+  .gach { height: 2px; margin: 18px auto; width: 60%; background: linear-gradient(90deg, transparent, var(--dong), transparent); border: 0; }
+  .tieu-de { text-align: center; font-size: clamp(2rem, 7vw, 3rem); font-weight: 800; color: var(--do); letter-spacing: .02em; }
+  .phu-de { text-align: center; color: var(--chu-nhat); font-style: italic; margin: 0; }
+  label { display: block; margin: 28px 0 8px; font-weight: 700; }
+  input[type=text] { width: 100%; padding: 12px 14px; font: inherit; color: var(--chu); background: #fbf4df; border: 2px solid var(--go); border-radius: 2px; }
+  .loi { color: var(--do); min-height: 1.6em; margin: 6px 0 0; font-size: .92rem; }
+  button {
+    font: inherit; font-family: "Playfair Display", Georgia, serif; font-weight: 600; font-size: 1.05rem;
+    padding: 12px 28px; cursor: pointer; color: #fbf1d6; background: var(--do);
+    border: 2px solid var(--dong); border-radius: 2px; box-shadow: 0 3px 0 var(--go); transition: transform .08s, box-shadow .08s, background .15s;
+  }
+  button:hover:not(:disabled) { background: #8f2727; }
+  button:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 1px 0 var(--go); }
+  button:disabled { opacity: .45; cursor: not-allowed; }
+  button.phu { background: transparent; color: var(--go); border-color: var(--go); }
+  button.phu:hover:not(:disabled) { background: var(--giay-dam); }
+  .hang-nut { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 24px; }
+  .hang-nut.phai { justify-content: flex-end; }
+  #man-ten button { display: block; margin: 22px auto 0; }
+  .tien-do { display: flex; justify-content: space-between; align-items: center; color: var(--chu-nhat); font-size: .92rem; }
+  .thanh { height: 8px; margin: 8px 0 24px; background: var(--giay-dam); border: 1px solid var(--go); }
+  .thanh > div { height: 100%; width: 0; background: var(--dong); transition: width .3s; }
+  #cau-hoi { font-size: 1.4rem; margin-bottom: 20px; color: var(--chu); }
+  .dap-an {
+    display: flex; gap: 14px; align-items: flex-start; width: 100%;
+    margin: 0 0 12px; padding: 12px 14px; text-align: left; font-family: inherit; font-weight: 400; font-size: 1rem; line-height: 1.6;
+    color: var(--chu); background: #fbf4df; border: 2px solid var(--go); border-radius: 2px; box-shadow: none;
+  }
+  .dap-an:hover:not(:disabled) { background: var(--giay-dam); }
+  .dap-an .chu-cai { flex: none; width: 32px; height: 32px; display: grid; place-items: center; font-family: "Playfair Display", Georgia, serif; font-weight: 800; color: var(--dong); border: 2px solid var(--dong); border-radius: 50%; }
+  .dap-an.chon { background: var(--go); color: #fbf1d6; border-color: var(--chu); }
+  .dap-an.chon .chu-cai { background: var(--dong); color: var(--chu); border-color: #fbf1d6; }
+  #man-kq { text-align: center; }
+  .diem { font-family: "Playfair Display", Georgia, serif; font-size: clamp(2.6rem, 10vw, 4rem); font-weight: 800; color: var(--do); line-height: 1.1; margin: 10px 0 4px; }
+  #loi-khen { font-style: italic; color: var(--chu-nhat); margin: 0; }
+  #man-kq h2 { font-size: 1.5rem; margin: 30px 0 12px; color: var(--go); }
+  .bang-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; text-align: left; font-size: .95rem; }
+  th, td { padding: 10px 12px; border-bottom: 1px solid rgba(90,58,34,.35); }
+  th { font-family: "Playfair Display", Georgia, serif; color: #fbf1d6; background: var(--go); }
+  td.so, th.so { text-align: center; width: 64px; }
+  tr.toi td { background: rgba(168,116,31,.28); font-weight: 700; }
+  tr:nth-child(2) td:first-child, tr:nth-child(3) td:first-child, tr:nth-child(4) td:first-child { color: var(--do); font-weight: 700; }
+  @media (max-width: 520px) { body { padding: 16px 10px 36px; font-size: 16px; } .khung { padding: 24px 16px; outline-offset: 4px; } button { width: 100%; } .hang-nut { flex-direction: column; } }
+  .loading-text { font-style: italic; color: var(--chu-nhat); }
+</style>
+</head>
+<body>
+<main class="khung">
+  <section id="man-ten" class="man hien">
+    <h1 class="tieu-de">Khảo Cổ Trí Thức</h1>
+    <p class="phu-de">Chủ đề: Sự vươn mình của ASEAN (1976 - 1999)</p>
+    <hr class="gach">
+    <label for="o-ten">Danh tính của người dự thi</label>
+    <input type="text" id="o-ten" maxlength="30" placeholder="Nhập tên của bạn" autocomplete="off">
+    <p class="loi" id="loi-ten" role="alert"></p>
+    <button id="nut-bat-dau">Bắt đầu</button>
+  </section>
+
+  <section id="man-bai" class="man">
+    <div class="tien-do">
+      <span id="chu-tien-do"></span>
+      <span id="chu-nguoi-choi"></span>
+    </div>
+    <div class="thanh"><div id="vach-tien-do"></div></div>
+    <h2 id="cau-hoi"></h2>
+    <div id="ds-dap-an"></div>
+    <div class="hang-nut phai">
+      <button id="nut-tiep" disabled>Tiếp tục</button>
+    </div>
+  </section>
+
+  <section id="man-kq" class="man">
+    <h1 class="tieu-de">Kết Quả</h1>
+    <div class="diem" id="diem"></div>
+    <p id="loi-khen"></p>
+    <hr class="gach">
+    <h2>Bảng Vàng Thế Giới</h2>
+    <div class="bang-wrap">
+      <table>
+        <thead><tr><th class="so">Hạng</th><th>Tên</th><th class="so">Điểm</th></tr></thead>
+        <tbody id="bang-vang"></tbody>
+      </table>
+    </div>
+    <div class="hang-nut">
+      <button id="nut-thi-lai">Thi lại</button>
+      <button id="nut-dang-xuat" class="phu">Đăng xuất</button>
+    </div>
+  </section>
+</main>
+
+<script>
+/* =====================================================================
+   BẠN HÃY DÁN ĐƯỜNG LINK FIREBASE VỪA COPY VÀO BÊN TRONG DẤU NGOẶC KÉP Ở DƯỚI ĐÂY
+   Ví dụ: const LINK_DATABASE = "https://quiz-lich-su-xxxxx.firebaseio.com/";
+   ===================================================================== */
+const LINK_DATABASE = "";
+
+
+const DANH_SACH_CAU_HOI = [
+  {
+    cauHoi: "Giai đoạn 1967 - 1975, tình hình tổ chức ASEAN được mô tả như thế nào?",
+    dapAn: { A: "Tổ chức lỏng lẻo, chưa có vị thế quốc tế và tồn tại nhiều nghi kỵ.", B: "Đã trở thành một khối liên kết kinh tế toàn diện.", C: "Có quy chế hoạt động chung và tiếng nói mạnh mẽ trên quốc tế.", D: "Đã quy tụ trọn vẹn 10 quốc gia trong khu vực Đông Nam Á." },
+    dapAnDung: "A"
+  },
+  {
+    cauHoi: "Sự kiện nào đánh dấu bước ngoặt lịch sử, định hình quy chế hoạt động của toàn khối ASEAN?",
+    dapAn: { A: "Thành lập Khu vực mậu dịch tự do ASEAN (1992).", B: "Việt Nam chính thức gia nhập ASEAN (1995).", C: "Hội nghị cấp cao ASEAN lần 1 và ký Hiệp ước Bali (2/1976).", D: "Lập Diễn đàn khu vực ASEAN - ARF (1994)." },
+    dapAnDung: "C"
+  },
+  {
+    cauHoi: "Đâu KHÔNG phải là một trong những nguyên tắc cơ bản của Hiệp ước Bali (1976)?",
+    dapAn: { A: "Tôn trọng chủ quyền và toàn vẹn lãnh thổ của nhau.", B: "Không can thiệp vào công việc nội bộ của nhau.", C: "Giải quyết các tranh chấp bằng biện pháp hòa bình.", D: "Sử dụng vũ lực để nhanh chóng giải quyết các xung đột." },
+    dapAnDung: "D"
+  },
+  {
+    cauHoi: "Sự kiện nào được xem là bước đột phá, chấm dứt hoàn toàn thế đối đầu giữa Đông Dương và ASEAN?",
+    dapAn: { A: "Brunei gia nhập ASEAN (1984).", B: "Việt Nam gia nhập ASEAN (7/1995).", C: "Lào và Myanmar gia nhập ASEAN (7/1997).", D: "Campuchia gia nhập ASEAN (4/1999)." },
+    dapAnDung: "B"
+  },
+  {
+    cauHoi: "Quốc gia nào gia nhập ASEAN vào tháng 4/1999, giúp tổ chức này quy tụ trọn vẹn 10 quốc gia Đông Nam Á?",
+    dapAn: { A: "Việt Nam", B: "Lào", C: "Myanmar", D: "Campuchia" },
+    dapAnDung: "D"
+  },
+  {
+    cauHoi: "Năm 1992, ASEAN đã thành lập tổ chức nào nhằm hướng tới việc xây dựng một thị trường chung?",
+    dapAn: { A: "Khu vực mậu dịch tự do ASEAN (AFTA).", B: "Diễn đàn khu vực ASEAN (ARF).", C: "Hiệp ước thân thiện và hợp tác Đông Nam Á.", D: "Cộng đồng Kinh tế ASEAN." },
+    dapAnDung: "A"
+  },
+  {
+    cauHoi: "Mục đích chính của việc thành lập Diễn đàn khu vực ASEAN (ARF) năm 1994 là gì?",
+    dapAn: { A: "Xóa bỏ hàng rào thuế quan giữa các nước thành viên.", B: "Đối thoại chính trị, thu hút các cường quốc (Mỹ, Nga, Trung Quốc...).", C: "Ký kết hiệp ước không sử dụng vũ khí hạt nhân.", D: "Hợp nhất quân đội các nước Đông Nam Á." },
+    dapAnDung: "B"
+  },
+  {
+    cauHoi: "Hai quốc gia nào đã chính thức được kết nạp vào ASEAN vào tháng 7/1997?",
+    dapAn: { A: "Việt Nam và Lào", B: "Lào và Myanmar", C: "Myanmar và Campuchia", D: "Brunei và Myanmar" },
+    dapAnDung: "B"
+  },
+  {
+    cauHoi: "Để nâng tầm liên kết về mặt quân sự - an ninh, năm 1995 ASEAN đã ký kết hiệp ước nào?",
+    dapAn: { A: "Hiệp ước Bali.", B: "Hiệp định mậu dịch tự do ASEAN (AFTA).", C: "Hiệp ước khu vực Đông Nam Á không có vũ khí hạt nhân (SEANWFZ).", D: "Hiệp ước phòng thủ chung Đông Nam Á." },
+    dapAnDung: "C"
+  },
+  {
+    cauHoi: "Quá trình vươn mình của ASEAN từ 1976 - 1999 đã mang lại hệ quả lớn nhất nào cho khu vực?",
+    dapAn: { A: "Biến Đông Nam Á từ khu vực đối đầu căng thẳng thành khu vực hòa bình, hữu nghị.", B: "Đưa Đông Nam Á trở thành trung tâm kinh tế duy nhất của thế giới.", C: "Xóa bỏ hoàn toàn ranh giới quốc gia giữa 10 nước thành viên.", D: "Khơi mào cuộc chạy đua vũ trang mới trong khu vực." },
+    dapAnDung: "A"
+  }
+];
+
+const SO_NGUOI_HIEN_THI = 10;
+const $ = id => document.getElementById(id);
+const CHU_CAI = ["A", "B", "C", "D"];
+let tenNguoiChoi = "", viTri = 0, diem = 0, daChon = null;
+let databaseUrl = LINK_DATABASE.trim();
+if(databaseUrl && !databaseUrl.endsWith("/")) databaseUrl += "/";
+
+function hienMan(id) {
+  document.querySelectorAll(".man").forEach(m => m.classList.remove("hien"));
+  $(id).classList.add("hien");
+  window.scrollTo(0, 0);
+}
+
+function batDau() {
+  const ten = $("o-ten").value.trim();
+  if (!ten) { $("loi-ten").textContent = "Vui lòng nhập tên trước khi bắt đầu."; $("o-ten").focus(); return; }
+  $("loi-ten").textContent = "";
+  tenNguoiChoi = ten;
+  lamLai();
+}
+
+function lamLai() {
+  viTri = 0; diem = 0; daChon = null;
+  $("chu-nguoi-choi").textContent = tenNguoiChoi;
+  hienMan("man-bai");
+  hienCauHoi();
+}
+
+function hienCauHoi() {
+  const ch = DANH_SACH_CAU_HOI[viTri], tong = DANH_SACH_CAU_HOI.length;
+  daChon = null;
+  $("chu-tien-do").textContent = "Câu " + (viTri + 1) + " / " + tong;
+  $("vach-tien-do").style.width = (viTri / tong * 100) + "%";
+  $("cau-hoi").textContent = ch.cauHoi;
+  $("nut-tiep").disabled = true;
+  $("nut-tiep").textContent = (viTri === tong - 1) ? "Nộp bài" : "Tiếp tục";
+
+  const ds = $("ds-dap-an");
+  ds.textContent = "";
+  CHU_CAI.forEach(c => {
+    const b = document.createElement("button");
+    b.className = "dap-an"; b.type = "button";
+    const k = document.createElement("span"); k.className = "chu-cai"; k.textContent = c;
+    const t = document.createElement("span"); t.textContent = ch.dapAn[c];
+    b.append(k, t);
+    b.onclick = () => {
+      daChon = c;
+      ds.querySelectorAll(".dap-an").forEach(x => x.classList.remove("chon"));
+      b.classList.add("chon");
+      $("nut-tiep").disabled = false;
+    };
+    ds.appendChild(b);
+  });
+}
+
+function tiepTuc() {
+  if (!daChon) return;
+  if (daChon === DANH_SACH_CAU_HOI[viTri].dapAnDung.trim().toUpperCase()) diem++;
+  viTri++;
+  if (viTri < DANH_SACH_CAU_HOI.length) hienCauHoi(); else ketThuc();
+}
+
+async function ketThuc() {
+  const tong = DANH_SACH_CAU_HOI.length;
+  const luot = { ten: tenNguoiChoi, diem: diem, tong: tong, thoiGian: Date.now() };
+  
+  $("diem").textContent = diem + " / " + tong;
+  const tyLe = diem / tong;
+  $("loi-khen").textContent = tyLe === 1 ? "Xuất sắc! Bạn là bậc thông thái của sử sách." : tyLe >= 0.7 ? "Rất tốt! Kiến thức lịch sử của bạn khá vững vàng." : tyLe >= 0.4 ? "Khá ổn. Hãy ôn lại sử sách để đạt điểm cao hơn." : "Chưa đạt. Hãy thử lại để chinh phục Bảng Vàng.";
+
+  $("bang-vang").innerHTML = `<tr><td colspan="3" class="loading-text">Đang đồng bộ Bảng Vàng trực tuyến...</td></tr>`;
+  hienMan("man-kq");
+
+  let danhSach = [];
+
+  // Lưu và lấy dữ liệu online
+  if (databaseUrl.startsWith("http")) {
+    try {
+      // 1. Gửi điểm mới lên
+      await fetch(databaseUrl + "bangVang.json", {
+        method: "POST",
+        body: JSON.stringify(luot),
+        headers: { "Content-type": "application/json; charset=UTF-8" }
+      });
+      // 2. Tải toàn bộ điểm về
+      let response = await fetch(databaseUrl + "bangVang.json");
+      let data = await response.json();
+      if (data) {
+        danhSach = Object.values(data);
+      }
+    } catch (e) {
+      console.log("Lỗi kết nối database", e);
+    }
+  } else {
+    // Nếu chưa nhập link Firebase thì chạy offline
+    $("bang-vang").innerHTML = `<tr><td colspan="3" class="loi">Chưa kết nối Firebase. Chỉ hiện điểm offline.</td></tr>`;
+    try { danhSach = JSON.parse(localStorage.getItem("bangVangOffline")) || []; } catch(e){}
+    danhSach.push(luot);
+    localStorage.setItem("bangVangOffline", JSON.stringify(danhSach));
+  }
+
+  // Sắp xếp Bảng vàng
+  const xep = danhSach.sort((a, b) => (b.diem / b.tong) - (a.diem / a.tong) || b.diem - a.diem || a.thoiGian - b.thoiGian);
+  const tb = $("bang-vang");
+  tb.textContent = "";
+  
+  xep.slice(0, SO_NGUOI_HIEN_THI).forEach((x, i) => {
+    const tr = document.createElement("tr");
+    if (x.thoiGian === luot.thoiGian && x.ten === luot.ten) tr.className = "toi";
+    [i + 1, x.ten, x.diem + " / " + x.tong].forEach((v, j) => {
+      const td = document.createElement("td");
+      if (j !== 1) td.className = "so";
+      td.textContent = v;
+      tr.appendChild(td);
+    });
+    tb.appendChild(tr);
+  });
+}
+
+$("nut-bat-dau").onclick = batDau;
+$("o-ten").addEventListener("keydown", e => { if (e.key === "Enter") batDau(); });
+$("nut-tiep").onclick = tiepTuc;
+$("nut-thi-lai").onclick = lamLai;
+$("nut-dang-xuat").onclick = () => { tenNguoiChoi = ""; $("o-ten").value = ""; hienMan("man-ten"); };
+</script>
+</body>
+</html>
